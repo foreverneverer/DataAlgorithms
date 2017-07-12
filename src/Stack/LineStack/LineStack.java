@@ -43,7 +43,7 @@ public class LineStack {
     }
 }
 
-class Node{
+class    Node{
     private String data;
     private Node nextnode;
 
