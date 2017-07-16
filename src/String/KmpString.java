@@ -19,7 +19,7 @@ public class KmpString {
                 ++j;
                 ++i;
                 next[i] = j;
-            }else if(j == 0){
+            }else if(j == 0){//因为已经回溯到j=0首位,且先经过上述的if比较，还是不相等，所以首位就需要和i下一位比较
                 ++i;
             }else if(j != 0){
                 j = next[j];
