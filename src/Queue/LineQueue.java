@@ -3,27 +3,27 @@ package Queue;
 /**
  * Created by js982 on 2017/6/25.
  */
-public class LineQueue {
-    private Node frontnode;
-    private Node rearnode;
+public class LineQueue<T> {
+    private Node<T> frontnode;
+    private Node<T> rearnode;
 
     public LineQueue(){
-        Node headnode = new Node();
+        Node<T> headnode = new Node<T>();
         frontnode = headnode;
         rearnode = headnode;
     }
 
-    public void enQueue(String data){
-        Node newnode = new Node();
+    public void enQueue(T data){
+        Node<T> newnode = new Node<T>();
         newnode.setData(data);
         rearnode.setNextnode(newnode);
         rearnode = newnode;
     }
 
-    public String deQueue(){
+    public T deQueue(){
         if(frontnode.getNextnode() != null){
-            String data;
-            Node p;
+            T data;
+            Node<T> p;
             p = frontnode.getNextnode();
             if(p == rearnode){
                 rearnode = frontnode;
@@ -37,9 +37,16 @@ public class LineQueue {
         return null;
     }
 
+    public boolean isEmpty(){
+        if(frontnode.getNextnode() == null)
+            return true;
+        else
+            return false;
+    }
+
     public static void main(String[] args){
         String stringdata;
-        LineQueue lineQueue = new LineQueue();
+        LineQueue<String> lineQueue = new LineQueue<String>();
         lineQueue.enQueue("1A");
         lineQueue.enQueue("2B");
         for(int i = 0; i < 3; i++){
@@ -48,11 +55,11 @@ public class LineQueue {
     }
 }
 
-class Node{
-    private String data;
+class Node<T>{
+    private T data;
     private Node nextnode;
 
-    public void setData(String data){
+    public void setData(T data){
         this.data = data;
     }
 
@@ -64,7 +71,7 @@ class Node{
         return nextnode;
     }
 
-    public String getData(){
+    public T getData(){
         return data;
     }
 }
